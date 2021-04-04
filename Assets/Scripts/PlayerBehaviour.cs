@@ -11,6 +11,10 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float playerDecreaseMultiplier;
     [SerializeField] private LayerMask enemyLayerMask;
     [SerializeField] private LayerMask finishLayerMask;
+    
+    
+    [SerializeField] private Animator graphicsAnimator;
+    [SerializeField] private Animator jumpAnimator;
 
     private bool _isActive;
     private bool _isCreating;
@@ -38,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private IEnumerator BulletCreatingProcess(LeanFinger f)
     {
+        graphicsAnimator.SetTrigger("Fill");
         var prepareBullet = Instantiate(GameAssets.i.prepareBulletPrefab, 
             body.position + body.forward * body.localScale.x, 
             Quaternion.identity).GetComponentInChildren<PrepareBulletBehaviour>();
@@ -52,7 +57,7 @@ public class PlayerBehaviour : MonoBehaviour
             yield return null;
         }
         prepareBullet.Ready();
-        
+        graphicsAnimator.SetTrigger("Idle");
         
         if (IsDepleted())
         {
@@ -70,6 +75,8 @@ public class PlayerBehaviour : MonoBehaviour
         var forwardEnemies = BoxCastForward(enemyLayerMask);
         if (forwardEnemies.Length > 0)
         {
+            if (jumpAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) jumpAnimator.SetTrigger("Jump");
+            
             var smallestZ = forwardEnemies[0].collider.gameObject.transform.position.z;
             foreach (var enemy in forwardEnemies)
             {
@@ -77,14 +84,17 @@ public class PlayerBehaviour : MonoBehaviour
                 if (z < smallestZ) smallestZ = z;
             }
 
-            while (body.position.z < smallestZ - 5)
+            while (body.position.z < smallestZ - 5 && _isActive)
             {
                 body.Translate(Vector3.forward * (Time.deltaTime * 5f));
                 yield return null;
             }
+            if (jumpAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) jumpAnimator.SetTrigger("Idle");
         }
         else
         {
+            if (jumpAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) jumpAnimator.SetTrigger("Jump");
+
             var finishCasts = BoxCastForward(finishLayerMask);
             if (finishCasts.Length > 0)
             {
@@ -96,9 +106,10 @@ public class PlayerBehaviour : MonoBehaviour
                     yield return null;
                 }
             }
-            DisableWin();
+            if (_isActive)DisableWin();
+            if (jumpAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) jumpAnimator.SetTrigger("Idle");
         }
-        
+        jumpAnimator.SetTrigger("Idle");
         _isCreating = false;
     }
 
@@ -112,6 +123,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void DisableLoose()
     {
         _isActive = false;
+        graphicsAnimator.Play("Died");
         WorldBroadcast.LooseConditionAchieved.Publish(gameObject);
         print("PlayerLoose");
     }
@@ -125,7 +137,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private bool IsDepleted()
     {
-        return body.localScale.x <= 0.05f;
+        return body.localScale.x <= 0.3f;
     }
 
     private bool CanCreateBullet()

@@ -1,4 +1,6 @@
+using System.Collections;
 using AndromedaCore.LevelManagement;
+using MudBun;
 using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
@@ -6,6 +8,8 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] private Transform body;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private LayerMask enemyLayer;
+    
+    [SerializeField] private Animator graphicsAnimator;
     
     private Rigidbody _rb;
     private Collider _c;
@@ -32,15 +36,26 @@ public class BulletBehaviour : MonoBehaviour
             var overlappedEnemies = Physics.OverlapSphere(body.position, 2f * body.localScale.x, enemyLayer);
             foreach (var enemy in overlappedEnemies)
             {
-                Destroy(enemy.gameObject);
+                var eb = enemy.GetComponentInParent<EnemyBehaviour>();
+                eb.TriggerDestroyed(body);
             }
             WorldBroadcast.OnBulletDestroyed.Publish(overlappedEnemies.Length);
-            Destroy(transform.parent.gameObject);
+            StartCoroutine(DestroySelf());
         } else if (coll.CompareTag("Final"))
         {
             WorldBroadcast.OnBulletDestroyed.Publish(0);
-            Destroy(transform.parent.gameObject);
+            StartCoroutine(DestroySelf());
         }
         print("collided anyway");
+    }
+
+    private IEnumerator DestroySelf()
+    {
+        _rb.velocity = Vector3.zero;
+        graphicsAnimator.SetTrigger("Die");
+        yield return new WaitUntil(() => 
+            graphicsAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
+        body.GetChild(0).gameObject.SetActive(false);
+        Destroy(transform.parent.gameObject);
     }
 }

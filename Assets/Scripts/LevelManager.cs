@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
         SetScreens();
     }
 

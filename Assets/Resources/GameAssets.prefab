@@ -47,3 +47,4 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1781147118384420392, guid: 0f57566b25c7b0e41ae10b42ab994578, type: 3}
   playerPrefab: {fileID: 6837375801644498292, guid: be6ce12a7c55b0546b593ba2b8ae154d, type: 3}
   enemyPrefab: {fileID: 6283210886452124156, guid: 8f496de5a92016a489c093e315beeabb, type: 3}
+  enemyDeathParticlesPrefab: {fileID: 3123075737211501182, guid: a3f72d5f213bb7d458dfc2c4369e7acf, type: 3}
