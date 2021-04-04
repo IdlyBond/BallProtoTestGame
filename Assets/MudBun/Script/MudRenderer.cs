@@ -270,11 +270,9 @@ namespace MudBun
     {
       base.OnEnable();
 
-      if (RenderMaterialMesh == null)
-      RenderMaterialMesh = ResourcesUtilEditor.DefaultMeshMaterial;
+      if (RenderMaterialMesh == null) RenderMaterialMesh = ResourcesUtilEditor.DefaultMeshMaterial;
 
-      if (RenderMaterialSplats == null)
-        RenderMaterialSplats = ResourcesUtilEditor.DefaultSplatMaterial;
+      if (RenderMaterialSplats == null) RenderMaterialSplats = ResourcesUtilEditor.DefaultSplatMaterial;
 
       RegisterEditorEvents();
     }

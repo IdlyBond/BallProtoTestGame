@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 6837375800537802236}
   bulletGrowSpeed: 1
-  playerDecreaseMultiplier: 0.5
+  playerDecreaseMultiplier: 0.3
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 128
