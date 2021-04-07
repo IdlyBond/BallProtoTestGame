@@ -3,15 +3,31 @@ using UnityEngine;
 public class SpawnEnemiesOnPlatform : MonoBehaviour
 {
     public Transform enemiesObj;
+    public GameObject[] designs;
     public bool spawnOnStart;
+    public bool spawnDesign;
     void Start()
     {
-        if (!spawnOnStart) return;
+        
+        if (spawnDesign)
+        {
+            SpawnDesign();
+        }
+        
+        if (spawnOnStart)
+        {
+            SpawnEnemies();
+        }
+        
+    }
+
+    private void SpawnEnemies()
+    {
         var enemyPrefab = GameAssets.i.enemyPrefab;
-        var rand = Random.Range(-0.5f,0.5f);
+        var rand = Random.Range(-0.5f, 0.5f);
         for (int i = 0; i < 3; i++)
         {
-            for (int j = -4; j < 5; j++)
+            for (int j = -3; j < 4; j++)
             {
                 if (Random.value < 0.5 + rand/2) continue;
                 var enemy = 
@@ -21,7 +37,17 @@ public class SpawnEnemiesOnPlatform : MonoBehaviour
             
             }
         }
-
     }
-
+    
+    private void SpawnDesign()
+    {
+        var index = Random.Range(0, designs.Length);
+        for (int i = 0; i < designs.Length; i++)
+        {
+            if (i != index)
+            {
+                Destroy(designs[i]);
+            } else designs[i].SetActive(true);
+        }
+    }
 }

@@ -5,8 +5,16 @@ public class MyLog : MonoBehaviour
 {
     string myLog;
     Queue myLogQueue = new Queue();
+
+    public bool isDebug;
  
     void Start(){
+        if (!isDebug)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
         DontDestroyOnLoad(gameObject);
         Debug.Log("Log1");
         Debug.Log("Log2");

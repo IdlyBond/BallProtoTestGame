@@ -49,7 +49,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  graphicsAnimator: {fileID: 2070980374853865786}
+  graphicsAnimator: {fileID: 1602620736185089597}
 --- !u!1 &883990432968431111
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +214,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3707604312281572640}
     m_Modifications:
+    - target: {fileID: 7336802046320280314, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336802046320280315, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
+      propertyPath: computeShader
+      value: 
+      objectReference: {fileID: 7200000, guid: d21bcadf468a23f49a027c9dd7999853, type: 3}
+    - target: {fileID: 8312023675584945540, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
+      propertyPath: computeShader
+      value: 
+      objectReference: {fileID: 7200000, guid: d21bcadf468a23f49a027c9dd7999853, type: 3}
     - target: {fileID: 8395878066403810568, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -262,6 +274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mud Renderer
       objectReference: {fileID: 0}
+    - target: {fileID: 8395878066403810570, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
 --- !u!4 &7510244082086146295 stripped
@@ -269,8 +285,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8395878066403810568, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
   m_PrefabInstance: {fileID: 2070980374590615039}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2070980374853865786 stripped
+--- !u!95 &1602620736185089597 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 935279813, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
+  m_CorrespondingSourceObject: {fileID: 756673714937648066, guid: dfb6459e771dd86458ddc874a371c297, type: 3}
   m_PrefabInstance: {fileID: 2070980374590615039}
   m_PrefabAsset: {fileID: 0}

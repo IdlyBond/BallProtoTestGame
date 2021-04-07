@@ -43,8 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587253eafc373544d8d93b9bedfae042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prepareBulletPrefab: {fileID: 1781147118384420392, guid: b961126e65af7e0488f139c8a1f079f7, type: 3}
-  bulletPrefab: {fileID: 1781147118384420392, guid: 0f57566b25c7b0e41ae10b42ab994578, type: 3}
-  playerPrefab: {fileID: 6837375801644498292, guid: be6ce12a7c55b0546b593ba2b8ae154d, type: 3}
-  enemyPrefab: {fileID: 6283210886452124156, guid: 8f496de5a92016a489c093e315beeabb, type: 3}
-  enemyDeathParticlesPrefab: {fileID: 3123075737211501182, guid: a3f72d5f213bb7d458dfc2c4369e7acf, type: 3}
+  prepareBulletPrefab: {fileID: 1781147118384420392, guid: b961126e65af7e0488f139c8a1f079f7,
+    type: 3}
+  bulletPrefab: {fileID: 1781147118384420392, guid: 0f57566b25c7b0e41ae10b42ab994578,
+    type: 3}
+  playerPrefab: {fileID: 6837375801644498292, guid: be6ce12a7c55b0546b593ba2b8ae154d,
+    type: 3}
+  enemyPrefab: {fileID: 6283210886452124156, guid: 8f496de5a92016a489c093e315beeabb,
+    type: 3}
+  platform: {fileID: 1095901609863151452, guid: d078fd0b7516e2741ac4719a5cae133c,
+    type: 3}
+  startPlatform: {fileID: 8963292392041986922, guid: 6dc1e153f21614049b70988d54d79a37,
+    type: 3}
+  endPlatform: {fileID: 8189514206937115605, guid: 227deb47d41ecf246b951cc96583740a,
+    type: 3}
+  enemyDeathParticlesPrefab: {fileID: 3123075737211501182, guid: a3f72d5f213bb7d458dfc2c4369e7acf,
+    type: 3}

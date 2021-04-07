@@ -10,6 +10,7 @@ public class PrepareBulletBehaviour : MonoBehaviour
     private bool isGrowing;
     void Awake()
     {
+        GetComponentInChildren<Animator>().Play("PrepareAnimation");
         StartCoroutine(Prepare());
     }
 

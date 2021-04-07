@@ -18,6 +18,12 @@ public class GameAssets : MonoBehaviour
     [SerializeField] public GameObject playerPrefab;
     [SerializeField] public GameObject enemyPrefab;
     
+    [SerializeField] public GameObject platform;
+    [SerializeField] public GameObject startPlatform;
+    [SerializeField] public GameObject endPlatform;
+    
     [SerializeField] public GameObject enemyDeathParticlesPrefab;
+    
+    
 
 }

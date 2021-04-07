@@ -18,8 +18,11 @@ public class EnemyBehaviour : MonoBehaviour
     private IEnumerator LifeBehaviour()
     {
         var rotation = (Vector3.left * Random.Range(0.5f, 1f) + Vector3.up * Random.Range(0.5f, 1f)) * 0.4f;
+        var startPos = body.localPosition;
+        var randomPosStart = Random.Range(0f, 200f);
         while (!_destroyed)
         {
+            body.localPosition = startPos + Vector3.up * Mathf.PingPong(Time.time / 5f + randomPosStart, 0.6f);
             body.Rotate(rotation);
             yield return null;
         }
@@ -29,8 +32,9 @@ public class EnemyBehaviour : MonoBehaviour
         var rotate = Vector3.left * 5f;
         while ((nextPos - body.position).y > 0.4f)
         {
-            body.Rotate(rotate * (nextPos - body.position).y);
-            body.position += (nextPos - body.position) / 30f;
+            var multi3 = nextPos - body.position;
+            body.Rotate(rotate * (multi3.y * Time.deltaTime * 107));
+            body.position += (multi3) / 30f * (Time.deltaTime * 107);
             yield return null;
         }
         yield return new WaitForSeconds(Mathf.Clamp(Random.value * distance / 20f - 0.5f, 0f, 10f));

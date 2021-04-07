@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using AndromedaCore.LevelManagement;
+using Cinemachine;
 using Lean.Touch;
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -25,6 +28,10 @@ public class PlayerBehaviour : MonoBehaviour
         
         LeanTouch.OnFingerDown += OnFingerDown;
         WorldBroadcast.OnBulletDestroyed.Subscribe(OnBulletDestroyed);
+        
+        graphicsAnimator.Play("Create");
+
+        FindObjectOfType<CinemachineVirtualCamera>().Follow = body;
     }
 
     private void OnDestroy()

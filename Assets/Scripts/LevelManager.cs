@@ -56,15 +56,16 @@ public class LevelManager : MonoBehaviour
 
     private void UpdatePlayerInfo()
     {
+        print(Application.persistentDataPath);
         var json = JsonUtility.ToJson(playerInfo);
-        File.WriteAllText("data.json", json);
+        File.WriteAllText(Application.persistentDataPath + "!data.json", json);
     }
 
     private void LoadPlayerInfo()
     {
-        playerInfo = !File.Exists("data.json") 
+        playerInfo = !File.Exists(Application.persistentDataPath + "!data.json") 
             ? new PlayerInfo() 
-            : JsonUtility.FromJson<PlayerInfo>(File.ReadAllText("data.json"));
+            : JsonUtility.FromJson<PlayerInfo>(File.ReadAllText(Application.persistentDataPath + "!data.json"));
     }
 
     private void OnApplicationQuit()
