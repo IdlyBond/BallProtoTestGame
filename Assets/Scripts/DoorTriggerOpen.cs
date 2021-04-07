@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using AndromedaCore.LevelManagement;
 using UnityEngine;
 
@@ -7,6 +7,11 @@ public class DoorTriggerOpen : MonoBehaviour
     void Start()
     {
         WorldBroadcast.WinConditionAchieved.Subscribe(OnWin);
+    }
+
+    private void OnDestroy()
+    {
+        WorldBroadcast.WinConditionAchieved.Unsubscribe(OnWin);
     }
 
     private void OnWin(GameObject o)
