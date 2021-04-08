@@ -18,7 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private Animator graphicsAnimator;
     [SerializeField] private Animator jumpAnimator;
     
-    [SerializeField] private LineRendererPro lineRenderer;
+    [SerializeField] private LineController lineRenderer;
 
     private bool _isActive;
     private bool _isCreating;
@@ -50,7 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private IEnumerator BulletCreatingProcess(LeanFinger f)
     {
-        lineRenderer.gameObject.SetActive(true);
+        lineRenderer.SetEnabled(true);
         graphicsAnimator.SetTrigger("Fill");
         var prepareBullet = Instantiate(GameAssets.i.prepareBulletPrefab, 
             body.position + body.forward * body.localScale.x, 
@@ -66,13 +66,14 @@ public class PlayerBehaviour : MonoBehaviour
             yield return null;
         }
         prepareBullet.Ready();
+        lineRenderer.SetEnabled(false);
         graphicsAnimator.SetTrigger("Idle");
         
         if (IsDepleted())
         {
             DisableLoose();
         }
-        lineRenderer.gameObject.SetActive(false);
+        
     }
 
     private void OnBulletDestroyed(int killCount)
