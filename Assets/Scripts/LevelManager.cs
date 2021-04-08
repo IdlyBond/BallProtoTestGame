@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]private GameObject startScreen;
     [SerializeField]private GameObject winScreen;
     [SerializeField]private GameObject looseScreen;
+    [SerializeField]private GameObject inGameScreen;
 
     public static PlayerInfo playerInfo;
     void Awake()
@@ -24,7 +25,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
-        SetScreens();
+        SetScreens(inGame:true);
     }
 
     public void OnWin(GameObject o)
@@ -47,11 +48,12 @@ public class LevelManager : MonoBehaviour
         print("Score: " + playerInfo.score);
     }
 
-    private void SetScreens(bool start = false, bool win = false, bool loose = false)
+    private void SetScreens(bool start = false, bool win = false, bool loose = false, bool inGame = false)
     {
         startScreen.SetActive(start);
         winScreen.SetActive(win);
         looseScreen.SetActive(loose);
+        inGameScreen.SetActive(inGame);
     }
 
     private void UpdatePlayerInfo()

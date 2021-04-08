@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class ShowInfoUI : MonoBehaviour
@@ -22,12 +24,24 @@ public class ShowInfoUI : MonoBehaviour
     public void Awake()
     {
         _text = GetComponent<TextMeshProUGUI>();
+        StartCoroutine(Updating());
     }
 
-    private void OnEnable()
+    private IEnumerator Updating()
     {
-        UpdateText(); 
+        while (true)
+        {
+            UpdateText(); 
+            yield return new WaitForSeconds(0.3f);
+        }
+        
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
 
     public void UpdateText()
     {
