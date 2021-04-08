@@ -38,6 +38,7 @@ public class EnemyBehaviour : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(Mathf.Clamp(Random.value * distance / 20f - 0.5f, 0f, 10f));
+        SoundManager.PlaySound(SoundManager.Sound.Coin, 0.97f, 0.9f);
         Destroy(transform.parent.gameObject);
         Instantiate(GameAssets.i.enemyDeathParticlesPrefab, body.position, Quaternion.identity);
     }

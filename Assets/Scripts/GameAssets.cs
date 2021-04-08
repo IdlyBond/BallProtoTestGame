@@ -23,7 +23,7 @@ public class GameAssets : MonoBehaviour
     [SerializeField] public GameObject endPlatform;
     
     [SerializeField] public GameObject enemyDeathParticlesPrefab;
-    
-    
+
+    [SerializeField] public SoundAudioClip[] sounds;
 
 }

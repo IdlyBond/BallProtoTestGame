@@ -16,9 +16,8 @@ public class DoorTriggerOpen : MonoBehaviour
 
     private void OnWin(GameObject o)
     {
+        SoundManager.PlaySound(SoundManager.Sound.Win, 1f, 1f);
         LeanTween.rotateLocal(gameObject, new Vector3(0f, -109.25f, 0f), 1.2f);
     }
     
-
-
 }

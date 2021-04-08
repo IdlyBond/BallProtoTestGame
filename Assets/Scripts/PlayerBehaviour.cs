@@ -32,6 +32,8 @@ public class PlayerBehaviour : MonoBehaviour
         
         graphicsAnimator.Play("Create");
 
+        SoundManager.PlaySound(SoundManager.Sound.BubbleHigh, 0.7f, 0.8f);
+        
         FindObjectOfType<CinemachineVirtualCamera>().Follow = body;
     }
 
@@ -50,6 +52,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     private IEnumerator BulletCreatingProcess(LeanFinger f)
     {
+        var audioS = gameObject.AddComponent<AudioSource>();
+        audioS.loop = true;
+        audioS.clip = SoundManager.GetClip(SoundManager.Sound.Bubble);
+        audioS.pitch = 0.32f;
+        audioS.volume = 0.7f;
+        audioS.Play();
         lineRenderer.SetEnabled(true);
         graphicsAnimator.SetTrigger("Fill");
         var prepareBullet = Instantiate(GameAssets.i.prepareBulletPrefab, 
@@ -66,6 +74,8 @@ public class PlayerBehaviour : MonoBehaviour
             yield return null;
         }
         prepareBullet.Ready();
+        audioS.Stop();
+        Destroy(audioS);
         lineRenderer.SetEnabled(false);
         graphicsAnimator.SetTrigger("Idle");
         

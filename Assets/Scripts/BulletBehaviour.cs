@@ -52,6 +52,7 @@ public class BulletBehaviour : MonoBehaviour
     {
         _rb.velocity = Vector3.zero;
         graphicsAnimator.SetTrigger("Die");
+        SoundManager.PlaySound(SoundManager.Sound.BubbleHigh, 0.75f, 1f -Random.value/10f);
         yield return new WaitUntil(() => 
             graphicsAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
         body.GetChild(0).gameObject.SetActive(false);

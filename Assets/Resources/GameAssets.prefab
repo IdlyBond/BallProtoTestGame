@@ -59,3 +59,12 @@ MonoBehaviour:
     type: 3}
   enemyDeathParticlesPrefab: {fileID: 3123075737211501182, guid: a3f72d5f213bb7d458dfc2c4369e7acf,
     type: 3}
+  sounds:
+  - sound: 0
+    clip: {fileID: 8300000, guid: 40a32b738c1c7f249a5be69c1354f6fc, type: 3}
+  - sound: 1
+    clip: {fileID: 8300000, guid: 6799e35e01213064eb2a5af8d6eb6168, type: 3}
+  - sound: 2
+    clip: {fileID: 8300000, guid: b68578bd6c543a54b8571277b1e2cd64, type: 3}
+  - sound: 3
+    clip: {fileID: 8300000, guid: 30e410570cd889e47b5ddd71917a2c6a, type: 3}
