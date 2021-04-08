@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
         WorldBroadcast.LooseConditionAchieved.Subscribe(OnLoose);
         WorldBroadcast.OnBulletDestroyed.Subscribe(OnBulletDestroyed);
         SetScreens(start: true);
+        
+        SoundManager.PlayMusic(SoundManager.Sound.MainTheme, 0.17f);
     }
 
     public void StartLevel()

@@ -5,12 +5,14 @@ using Object = UnityEngine.Object;
 
 public static class SoundManager
 {
+    private static AudioSource themeSourse;
     public enum Sound
     {
         Coin,
         Bubble,
         BubbleHigh,
         Win,
+        MainTheme
     }
     
     public static void PlaySound(Sound sound, Vector3 position)
@@ -75,9 +77,26 @@ public static class SoundManager
         return null;
     }
 
+    public static void PlayMusic(Sound sound, float volume = 1f, float pitch = 1f)
+    {
+        if (!themeSourse)
+        {
+            GameObject soundObject = new GameObject("Music");
+            Object.DontDestroyOnLoad(soundObject);
+            themeSourse = soundObject.AddComponent<AudioSource>();
+        }
+        
+        themeSourse.Stop();
+        themeSourse.clip = GetClip(sound);
+        themeSourse.volume = volume;
+        themeSourse.pitch = pitch;
+        themeSourse.loop = true;
+        themeSourse.Play();
+    }
+
     private static bool CanPlaySound(Sound sound)
     {
-        return true;
+        return true; //TODO
     }
 }
 
