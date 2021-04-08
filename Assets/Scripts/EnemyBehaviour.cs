@@ -40,7 +40,6 @@ public class EnemyBehaviour : MonoBehaviour
         yield return new WaitForSeconds(Mathf.Clamp(Random.value * distance / 20f - 0.5f, 0f, 10f));
         Destroy(transform.parent.gameObject);
         Instantiate(GameAssets.i.enemyDeathParticlesPrefab, body.position, Quaternion.identity);
-        print("end");
     }
 
     public void TriggerDestroyed(Transform bulletKilled)

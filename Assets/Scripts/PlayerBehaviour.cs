@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using AndromedaCore.LevelManagement;
 using Cinemachine;
 using Lean.Touch;
-using NUnit.Framework;
+using TheKnightsOfUnity.LineRendererPro;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -18,6 +17,8 @@ public class PlayerBehaviour : MonoBehaviour
     
     [SerializeField] private Animator graphicsAnimator;
     [SerializeField] private Animator jumpAnimator;
+    
+    [SerializeField] private LineRendererPro lineRenderer;
 
     private bool _isActive;
     private bool _isCreating;
@@ -49,6 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private IEnumerator BulletCreatingProcess(LeanFinger f)
     {
+        lineRenderer.gameObject.SetActive(true);
         graphicsAnimator.SetTrigger("Fill");
         var prepareBullet = Instantiate(GameAssets.i.prepareBulletPrefab, 
             body.position + body.forward * body.localScale.x, 
@@ -70,6 +72,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             DisableLoose();
         }
+        lineRenderer.gameObject.SetActive(false);
     }
 
     private void OnBulletDestroyed(int killCount)
